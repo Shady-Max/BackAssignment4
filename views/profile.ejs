@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Profile</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Optional: link to your styles -->
+</head>
+<body>
+<header>
+    <h1>Your Profile</h1>
+    <a href="/logout">Logout</a>
+</header>
+
+<main>
+    <h2>Welcome, <%= user.name %></h2>
+    <img src="<%= user.profilePicture %>" alt="Profile Picture" width="150" height="150">
+    <p>Email: <%= user.email %></p>
+
+    <form action="/upload-profile" method="POST" enctype="multipart/form-data">
+        <input type="file" name="profilePicture" required>
+        <button type="submit">Upload</button>
+    </form>
+    <form action="/delete-profile-picture" method="POST" onsubmit="return confirm('Are you sure you want to delete your profile picture?');">
+        <button type="submit">Delete Profile Picture</button>
+    </form>
+    <form action="/update-profile" method="POST">
+        <div>
+            <label for="name">Update Name:</label>
+            <input type="text" name="name" id="name" value="<%= user.name %>" required>
+        </div>
+        <div>
+            <label for="email">Update Email:</label>
+            <input type="email" name="email" id="email" value="<%= user.email %>" required>
+        </div>
+        <button type="submit">Update Profile</button>
+    </form>
+    <form action="/delete-account" method="POST" onsubmit="return confirm('Are you sure you want to delete your account?');">
+        <button type="submit" style="color: red;">Delete Account</button>
+    </form>
+
+</main>
+</body>
+</html>

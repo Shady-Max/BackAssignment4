@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Welcome</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Optional: link to your styles -->
+</head>
+<body>
+<header>
+    <h1>Welcome, <%= user.name %>!</h1>
+    <a href="/logout">Logout</a>
+</header>
+
+<main>
+    <p>This is the home page, accessible only to logged-in users.</p>
+    <p>You can visit you profile page <a href="/profile">here</a>.</p>
+</main>
+</body>
+</html>

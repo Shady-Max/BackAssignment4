@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Create an Account</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Frontend validation script
+        function validateForm() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const name = document.getElementById('name').value;
+            const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,20}$/; // Password must be 6-20 chars and contain at least one letter and one number
+
+            if (!email || !password || !name) {
+                alert("All fields are required.");
+                return false;
+            }
+
+            if (!passwordRegex.test(password)) {
+                alert("Password must be between 6 and 20 characters long and contain at least one letter and one number.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+<header>
+    <h1>Create an Account</h1>
+    <a href="/login">Already have an account? Login</a>
+</header>
+
+<main>
+    <form action="/register" method="POST" onsubmit="return validateForm()">
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required>
+        </div>
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" required>
+        </div>
+        <button type="submit">Sign Up</button>
+    </form>
+
+    <% if (errorMessage) { %>
+        <p style="color: red;"><%= errorMessage %></p>
+    <% } %>
+</main>
+</body>
+</html>
